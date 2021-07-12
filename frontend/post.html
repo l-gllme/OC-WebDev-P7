@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../assets/favicon.pgn" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Groupomania</title>
+</head>
+
+<body>
+    <header class=" container-fluid">
+        <img src="images/icon-left-font-monochrome-black.jpeg" alt="logo" class="img-fluid">
+    </header>
+
+    <main>
+
+        <div class="container signin-div">
+            <a href="main.html">
+                <div class="btn col-5 col-sm-4 col-md-4 col-xl-2 btn-warning">Home</div>
+            </a>
+        </div>
+
+        <div class="container col-11 bg-light">
+
+            <div class="container" id="bigPost">
+                <h2 id="postTitle"></h2>
+                <p class="container col-6 col-md-4 "id="postAuthor"></p>
+                <p class="col-11 " id="postContent"></p>
+                <p class="col-6 container" id="postUrl"></p>
+                <div class="btn btn-danger col-6 col-md-3 col-xl-2" id="deletePost">Delete Post</div>
+            </div>
+                <div id="createComment" class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light">
+                    <form id="createCommentForm">
+                        <textarea id="commentText" placeholder="Leave a comment" class="col-11"></textarea>
+                        <div class="inputs">
+                            <input id="submitComment" type="submit"
+                                class="submit btn-warning col-5 col-sm-4 col-md-4 col-xl-2 container" value="Comment">
+                        </div>
+                    </form>
+                </div>
+        
+                <div id="comments" class="border-top border-dark"> Comments</div>
+        </div>
+
+    </main>
+
+    <script src="JS/post.js"></script>
+</body>
+
+</html>

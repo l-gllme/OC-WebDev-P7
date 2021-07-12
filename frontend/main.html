@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Groupomania</title>
+</head>
+
+<body>
+    <header class=" container-fluid">
+        <img src="images/icon-left-font-monochrome-black.jpeg" alt="logo" class="img-fluid">
+    </header>
+
+    <div class="container signin-div">
+        <div class="container col-5 col-sm-4 col-md-4 col-xl-2 btn btn-warning" id="profile">Profile</div>
+        <div class="container col-5 col-sm-4 col-md-4 col-xl-2 btn btn-primary" id="disconect">Disconect</div>
+
+    </div>
+
+    <main>
+        <div id="createPost" class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light">
+            <form id="createPostForm">
+                <input class="col-10 col-sm-9 col-md-9 col-xl-9 signin-input" type="text" id="postTittle"
+                    placeholder="Your post title">
+                <textarea id="postText" placeholder="Whats's happening?" class="col-11"></textarea>
+                <div class="inputs">
+                    <input class="container col-10 col-sm-9 col-md-8 col-xl-7" id="createLink" type="url" placeholder="Link (Optional)">
+                    <input id="submitPost" type="submit"
+                        class="submit btn-warning col-5 col-sm-4 col-md-4 col-xl-2 container" value="Post">
+                </div>
+            </form>
+        </div>
+
+        <div id="posts" class="border-top border-dark"></div>
+
+    </main>
+
+    <script src="JS/global.js"></script>
+    <script src="JS/main.js"></script>
+</body>
+
+</html>

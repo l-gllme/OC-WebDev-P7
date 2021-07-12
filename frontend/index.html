@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Groupomania</title>
+</head>
+
+<body>
+    <header class=" container-fluid">
+    <img src="images/icon-left-font-monochrome-black.jpeg" alt="logo" class="img-fluid">
+    </header>
+    <main class="container col-12">
+        <div class=" container col-10 col-sm-9 col-md-7 col-xl-5 bg-light signin-div">
+            <h2>Signup</h2>
+            <form id="signup-form" name="signup-form">
+                <div>
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 signin-input" type="text" id="signup_userName" name="signup_userName" placeholder="Username">
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 signin-input" type="email" id="signup_email" name="signup_email" placeholder="Email">
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 signin-input" type="password" id="signup_password" name="signup_password" placeholder="Password">
+                </div>
+                <input class="col-8 col-sm-7 col-md-6 col-xl-6 btn-warning signin-input" type="submit" value="Signup">
+            </form>
+        </div>
+        <div class=" container col-10 col-sm-9 col-md-7 col-xl-5 bg-light signin-div">
+            <h2>Login</h2>
+            <form id="signin-form">
+                <div>
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 signin-input" type="email" id="signin_email" name="signin_email" placeholder="Email">
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 signin-input" type="password" id="signin_password" name="ignin_password" placeholder="Pasword">
+                </div>
+                <input class="col-8 col-sm-7 col-md-6 col-xl-6 btn-warning signin-input" type="submit" value="Login">
+            </form>
+        </div>
+    </main>
+    <script src="JS/connections.js"></script>
+</body>
+
+</html>
