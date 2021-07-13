@@ -1,11 +1,11 @@
-const token = 'Bearer ' + sessionStorage.getItem('token')
+const token = 'Bearer ' + localStorage.getItem('token')
 
 const params = new URLSearchParams(document.location.search)
 
 let paramValue = params.get('id')
 
-let userId = sessionStorage.getItem('userId')
-let isAdmin = sessionStorage.getItem('isAdmin')
+let userId = localStorage.getItem('userId')
+let isAdmin = localStorage.getItem('isAdmin')
 
 //get one post 
 const getPostData = async () => {
@@ -18,32 +18,19 @@ const getPostData = async () => {
     const post = await response.json()
     if (response.status == 200) {
 
-        const getUserData = async () => {
-            const response = await fetch('http://localhost:3000/api/users/' + post.userId, {
-                headers: {
-                    'Authorization': token
-                }
-            })
-            const user = await response.json()
-            if (response.status == 201) {
-                let author = document.getElementById('postAuthor')
-                author.innerHTML = 'by:' + user.username
-            } else {
-                alert('Error ' + response.status + 'Please Retry')
-            }
-        }
-        getUserData();
-
-        let title = document.getElementById('postTitle')
-        title.innerHTML = post.tittle
+        let author = document.getElementById('postAuthor')
+        author.innerHTML = 'Post by: ' + post.postAuthor
         let content = document.getElementById('postContent')
         content.innerHTML = post.content
+        let link = document.getElementById('link')
+        link.href = post.url
         let url = document.getElementById('postUrl')
         url.innerHTML = post.url
+        url.classList = 'col-11 col-md-8 col-xl-4 rounded btn-transparent border container'
         if (isAdmin || userId == post.userId) {
             let deleteBtn = document.getElementById('deletePost')
             deleteBtn.style.display = 'block'
-            sessionStorage.setItem('postUserId', post.userId)
+            localStorage.setItem('postUserId', post.userId)
         }
     } else {
         alert('Error ' + response.status + 'Please Retry')
@@ -58,7 +45,7 @@ document.getElementById('deletePost').addEventListener('click', async (e) => {
     let data = JSON.stringify({
         userId: userId,
         isAdmin: isAdmin,
-        postUserId: sessionStorage.getItem('postUserId')
+        postUserId: localStorage.getItem('postUserId')
     })
     const response = await fetch('http://localhost:3000/api/posts/' + paramValue, {
         method: 'DELETE',
@@ -80,7 +67,7 @@ document.getElementById('createCommentForm').addEventListener('submit', async (e
     e.preventDefault()
 
     let data = JSON.stringify({
-        userId: sessionStorage.getItem('userId'),
+        userId: localStorage.getItem('userId'),
         content: document.getElementById('commentText').value,
         postId: paramValue
     })
@@ -132,7 +119,7 @@ function displayComments(comment) {
         const user = await response.json()
         if (response.status == 201) {
             let commentAuthor = user.username
-            sessionStorage.setItem('commentAuthor', commentAuthor)
+            localStorage.setItem('commentAuthor', commentAuthor)
 
         } else {
             alert('Error ' + response.status + 'Please Retry')
@@ -140,8 +127,8 @@ function displayComments(comment) {
     }
 
     getUserData();
-    sessionStorage.setItem('commentAuthorId',comment.userId)
-    commentAuthor = sessionStorage.getItem('commentAuthor')
+    localStorage.setItem('commentAuthorId',comment.userId)
+    commentAuthor = localStorage.getItem('commentAuthor')
 
     if (isAdmin || userId == comment.userId) {
 
@@ -173,7 +160,7 @@ for ( var i = 0 ; i < dell.length; i++){
         let data = JSON.stringify({
             userId: userId,
             isAdmin: isAdmin,
-            commentAuthorId : sessionStorage.getItem('commentAuthorId')
+            commentAuthorId : localStorage.getItem('commentAuthorId')
         })
         const response = await fetch('http://localhost:3000/api/posts/' + ParamValue +'/comments/'+ cParamValue, {
             method: 'DELETE',

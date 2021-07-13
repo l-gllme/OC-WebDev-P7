@@ -14,10 +14,10 @@ input{
     margin: auto;
     border: none;
     background-color: fff;
-    border-radius: 1em;
     padding: 0.3em 2em 0.3em 2em;
     width: 66%;
     text-align: center;
+    margin: 0.5em;
 }
 .btn{
     border-radius: 1em;
@@ -29,16 +29,14 @@ input{
     border-radius: 1em;
 }
 .signin-input{
-    margin: 0.5em;
+    border-radius: 1em;
 }
 .signin-div{
     padding: 1em;
-    border-radius: 1em;
     margin-top: 1em;
 }
 .bg-light{
     padding: 1em;
-    border-radius: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
 }
@@ -49,7 +47,6 @@ input{
     border-radius: 1em;
 }
 .bg-light .container p {
-    border-radius: 1em;
     padding: 0.4em;
     margin-top: 0.4em;
     margin-bottom: 0.4em;
@@ -77,4 +74,8 @@ a:hover{
 #deletePost{
     display:none;
     margin: auto;
+}
+#postUrl{
+    margin-top: 1em;
+    margin-bottom: 1em;
 }

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const models = require('../models');
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/;
+const PASSWORD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
 
 
@@ -16,19 +16,19 @@ module.exports = {
     let username = req.body.username;
     let password = req.body.password;
 
-    /* if (email == null || username == null || password == null) {
-       return res.status(400).json({ 'error': 'missing parameters' });
+     if (email == null || username == null || password == null) {
+       return res.status(400).json({ error: 'missing parameters' });
      }
      if (!EMAIL_REGEX.test(email)) {
-       return res.status(400).json({ 'error': 'email is not valid' });
+       return res.status(400).json({ error: 'email is not valid' });
      }
  
      if (!PASSWORD_REGEX.test(password)) {
-       return res.status(400).json({ 'error': 'password invalid (must length 4 - 8 and include 1 number at least)' });
-     }*/
+       return res.status(400).json({ error: 'Password invalid' });
+     }
     models.User.findOne({ where: { email: req.body.email } }).then(result => {
       if (result) {
-        res.status(409).json({ 'message': 'email already exist' });
+        res.status(409).json({ 'error': 'email already exist' });
       } else {
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(req.body.password, salt, function (error, hash) {
@@ -36,13 +36,13 @@ module.exports = {
               email: req.body.email,
               username: username,
               password: hash,
-              isAdmin: false
+              isAdmin: 0
             }
             models.User.create(user)
               .then(result => {
-                res.status(201).json({ 'message': 'Utilisateur créer' });
+                res.status(201).json({ 'message': 'User created' });
               }).catch(error => {
-                res.status(500).json({ 'message': 'probleme lors de la création de lutilisateur' });
+                res.status(500).json({ 'message': 'Error' });
               });
           });
         });
@@ -54,7 +54,7 @@ module.exports = {
   login: function login(req, res) {
     models.User.findOne({ where: { email: req.body.email } }).then(user => {
       if (user === null) {
-        res.status(401).json({ 'message': 'Informations de connexion mauvaises!' });
+        res.status(401).json({ 'message': 'Bad request' });
       } else {
         bcrypt.compare(req.body.password, user.password, function (err, result) {
           if (result) {
@@ -69,7 +69,7 @@ module.exports = {
               )
             });
       } else {
-        res.status(401).json({ 'message': 'Mot de passe incorect' });
+        res.status(401).json({ 'message': 'Incorect Password' });
       }
 });
       }
@@ -89,6 +89,24 @@ getUserProfile: function (req, res) {
     }).catch(function (err) {
       res.status(500).json({ error });
     });
+},
+editUserProfile: function (req, res) {
+  const userId = req.params.id;
+  const updatedProfile = {
+    username: req.body.username,
+  }
+
+  models.User.update(updatedProfile, { where: { id: userId } })
+    .then(result => {
+      res.status(200).json({
+        message: "Profil updated successfully",
+        post: updatedProfile
+      });
+    }).catch(error => {
+      res.status(500).json({
+        message: "Somenthing went wrong",
+      });
+    })
 },
 deleteAccount: async function (req, res) {
   try {

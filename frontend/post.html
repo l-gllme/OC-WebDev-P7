@@ -17,37 +17,45 @@
 
     <main>
 
-        <div class="container signin-div">
+        <div class="container-fluid row">
             <a href="main.html">
-                <div class="btn col-5 col-sm-4 col-md-4 col-xl-2 btn-warning">Home</div>
+                <div class="rounded shadow-sm container p-1 col-5 col-sm-4 col-md-4 col-xl-1 btn-warning">Home</div>
             </a>
+            <div class="p-1 btn-danger col-5 col-sm-4 col-md-4 col-xl-1 rounded shadow-sm container"
+            id="deletePost">Delete Post</div>
         </div>
 
         <div class="container col-11 bg-light">
 
             <div class="container" id="bigPost">
                 <h2 id="postTitle"></h2>
-                <p class="container col-6 col-md-4 "id="postAuthor"></p>
-                <p class="col-11 " id="postContent"></p>
-                <p class="col-6 container" id="postUrl"></p>
-                <div class="btn btn-danger col-6 col-md-3 col-xl-2" id="deletePost">Delete Post</div>
+                <p class="container border rounded col-8 col-md-6 col-xl-3 " id="postAuthor"></p>
+                <p class="col-11 container bg-white p-3 shadow-sm rounded" id="postContent"></p>
+                <a href="" class="col-11 col-md-8 col-xl-4" id="link">
+                    <p class="" id="postUrl"></p>
+                </a>
             </div>
-                <div id="createComment" class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light">
-                    <form id="createCommentForm">
-                        <textarea id="commentText" placeholder="Leave a comment" class="col-11"></textarea>
-                        <div class="inputs">
-                            <input id="submitComment" type="submit"
-                                class="submit btn-warning col-5 col-sm-4 col-md-4 col-xl-2 container" value="Comment">
-                        </div>
-                    </form>
-                </div>
-        
-                <div id="comments" class="border-top border-dark"> Comments</div>
+            <div id="createComment" class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light">
+                <form id="createCommentForm" class="form-group">
+                    <textarea id="commentText" placeholder="Leave a comment"
+                        class=" form-control row-2 col-11"></textarea>
+                    <div class="inputs">
+                        <input id="submitComment" type="submit"
+                            class="submit btn-warning col-8 col-sm-6 col-md-4 col-xl-2 rounded shadow-sm container"
+                            value="Comment">
+                    </div>
+                </form>
+            </div>
+
+            <div id="comments" class="border-top border-dark"> Comments</div>
         </div>
 
     </main>
 
+
+    <script src="JS/global.js"></script>
     <script src="JS/post.js"></script>
+
 </body>
 
 </html>

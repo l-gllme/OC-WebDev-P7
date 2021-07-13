@@ -16,9 +16,9 @@ module.exports = {
           key: 'id'
         }
       },
-      tittle: {
+      postAuthor: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       content: {
         allowNull: false,

@@ -5,12 +5,11 @@ module.exports = {
 
     createPost: function (req, res) {
         const post = {
-            tittle: req.body.tittle,
+            postAuthor: req.body.postAuthor,
             userId: req.body.id,
             content: req.body.content,
             url: req.body.url,
         }
-        console.log(post)
         models.Post.create(post)
         .then(result => {res.status(201).json({ message: 'Post created successfully', post: result});
         })

@@ -1,4 +1,4 @@
-const token = 'Bearer ' + sessionStorage.getItem('token')
+const token = 'Bearer ' + localStorage.getItem('token')
 
 //Display user information
 const params = new URLSearchParams(document.location.search)
@@ -29,10 +29,10 @@ if(params.has('userId')) {
 document.getElementById('delete').addEventListener('click', async(e) => {
     e.preventDefault()
     let data = JSON.stringify({
-        userId: sessionStorage.getItem('userId'),
-        isAdmin: sessionStorage.getItem('isAdmin')
+        userId: localStorage.getItem('userId'),
+        isAdmin: localStorage.getItem('isAdmin')
     })
-    const response = await fetch('http://localhost:3000/api/users/' + sessionStorage.getItem('userId') ,{
+    const response = await fetch('http://localhost:3000/api/users/' + localStorage.getItem('userId') ,{
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
