@@ -1,5 +1,6 @@
 body{
     text-align: center;
+    overflow: scroll;
 }
 header{
     height: 10vh;
@@ -19,49 +20,8 @@ input{
     text-align: center;
     margin: 0.5em;
 }
-.btn{
-    border-radius: 1em;
-    cursor: pointer;
-    margin: 1em;
-}
-#createPost{
-    padding: 1em;
-    border-radius: 1em;
-}
 .signin-input{
     border-radius: 1em;
-}
-.signin-div{
-    padding: 1em;
-    margin-top: 1em;
-}
-.bg-light{
-    padding: 1em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-.bg-light h4,h3{
-    margin-bottom: 1em;
-    margin-top: 00.5em;
-    padding: 0.3em;
-    border-radius: 1em;
-}
-.bg-light .container p {
-    padding: 0.4em;
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
-}
-.post img{
-    max-height: 300px;
-    max-width: 300px;
-    border-radius: 1em;
-}
-.post .content{
-    padding: 0.5em;
-    border-radius: 1em;
-}
-.post{
-    margin-top: 1.5em;
 }
 a{
     color: black;
@@ -75,7 +35,7 @@ a:hover{
     display:none;
     margin: auto;
 }
-#postUrl{
-    margin-top: 1em;
-    margin-bottom: 1em;
+#updateProfile{
+    display: none;
 }
+

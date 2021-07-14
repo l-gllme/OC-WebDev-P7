@@ -1,11 +1,23 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cryptoJs = require('crypto-js')
 
 const models = require('../models');
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
+function emailMask(email) {
+  var maskedEmail = email.replace(/([^@])/g, "*").split('');
+  var previous	= "";
+  for(i=0;i<maskedEmail.length;i++){
+    if (i<=0 || previous == "@"){
+      maskedEmail[i] = email[i];
+    }
+    previous = email[i];
+  }
+  return maskedEmail.join('');
+}
 
 
 module.exports = {
@@ -32,8 +44,11 @@ module.exports = {
       } else {
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(req.body.password, salt, function (error, hash) {
+            let cryptedEmail = cryptoJs.HmacSHA256(req.body.email, 'secretKey').toString()
+            let maskedEmail = emailMask(req.body.email)
             const user = {
-              email: req.body.email,
+              email: cryptedEmail,
+              maskedEmail: maskedEmail,
               username: username,
               password: hash,
               isAdmin: 0
@@ -42,17 +57,18 @@ module.exports = {
               .then(result => {
                 res.status(201).json({ 'message': 'User created' });
               }).catch(error => {
-                res.status(500).json({ 'message': 'Error' });
+                res.status(500).json({ 'error': 'User creation problem' });
               });
           });
         });
       }
     }).catch(error => {
-      res.status(500).json({ error });
+      res.status(500).json({ 'error': 'Model not found' });
     });
   },
   login: function login(req, res) {
-    models.User.findOne({ where: { email: req.body.email } }).then(user => {
+    let decryptedEmail = cryptoJs.HmacSHA256(req.body.email, 'secretKey').toString()
+    models.User.findOne({ where: { email: decryptedEmail } }).then(user => {
       if (user === null) {
         res.status(401).json({ 'message': 'Bad request' });
       } else {
@@ -82,12 +98,12 @@ getUserProfile: function (req, res) {
   models.User.findByPk(userId)
     .then(function (user) {
       if (user) {
-        res.status(201).json(user);
+        res.status(201).json(user)
       } else {
-        res.status(404).json({ 'error': 'utilisateur non trouvé' });
+        res.status(404).json({ 'error': 'utilisateur non trouvé' })
       }
     }).catch(function (err) {
-      res.status(500).json({ error });
+      res.status(500).json({ 'error': 'error' });
     });
 },
 editUserProfile: function (req, res) {

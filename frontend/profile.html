@@ -15,26 +15,37 @@
         <img src="images/icon-left-font-monochrome-black.jpeg" alt="logo" class="img-fluid">
     </header>
     <main>
-        <div class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light">
-            <h4 class="bg-white col-10 col-sm-9 col-md-6 col-xl-4 container border border-warning">Your Profile</h4>
+        <div class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light border border-dark p-3 rounded shadow-sm mb-2">
+            <h4 class="bg-white col-10 col-sm-9 col-md-6 col-xl-4 container border rounded shadow-sm border-primary">Your Profile</h4>
 
             <div class="container">
                 <h5 class="container col-5 col-sm-4 col-md-3 col-xl-3">Username:</h5>
-                <p class="container col-12 col-sm-6 col-md-6 col-xl-6 bg-white border" id="username"></p>
+                <p class="container col-12 col-sm-6 col-md-6 col-xl-6 bg-white rounded shadow-sm border" id="username"></p>
             </div>
             <div class="container">
                 <h5 class="container col-5 col-sm-4 col-md-3 col-xl-3">Mail:</h5>
-                <p class="container col-12 col-sm-6 col-md-6 col-xl-6 bg-white border" id="mail"></p>
+                <p class="container col-12 col-sm-6 col-md-6 col-xl-6 bg-white rounded shadow-sm border" id="mail"></p>
             </div>
 
         </div>
 
-        <div class="container signin-div">
-            <a href="main.html">
-                <div class="btn col-5 col-sm-4 col-md-4 col-xl-2 btn-warning">Home</div>
-            </a>
-            <div class="btn col-5 col-sm-4 col-md-4 col-xl-2 btn-info" id="edit">Edit Account</div>
-            <div class="btn col-5 col-sm-4 col-md-4 col-xl-2 btn-primary" id="delete">Delete Account</div>
+        <div class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light border border-dark p-3 rounded shadow-sm mb-2" id="updateProfile">
+            <form id="updateProfileForm">
+                <div class="container">
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 rounded shadow-sm" type="text" id="new_userName"  placeholder="New Username">
+                    <div class="container col-5 col-sm-4 col-md-3 col-xl-3 p-1 rounded shadow-sm btn-warning" id="changeUsername">Update Username</div>
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 rounded shadow-sm" type="email" id="new_email"  placeholder=" New Email">
+                    <div class="container col-5 col-sm-4 col-md-3 col-xl-3 p-1 rounded shadow-sm btn-warning" id="changeEmail">Update Email</div>
+                    <input class="col-10 col-sm-9 col-md-9 col-xl-9 rounded shadow-sm" type="password" id="new_password"  placeholder="New Password">
+                    <div class="container col-5 col-sm-4 col-md-3 col-xl-3 p-1 rounded shadow-sm btn-warning" id="changePassword">Update Password</div>
+                    <div class="container col-5 col-sm-4 col-md-2 col-xl-2 mt-2 p-1 rounded shadow-sm btn-danger" id="cancelUpdate">Cancel</div>
+                </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <a href="main.html" class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-primary">Home</a>
+            <div class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-primary" id="edit">Edit Account</div>
+            <div class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-danger" id="delete">Delete Account</div>
         </div>
 
     </main>

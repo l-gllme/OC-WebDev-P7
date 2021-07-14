@@ -17,42 +17,40 @@
 
     <main>
 
-        <div class="container-fluid row">
-            <a href="main.html">
-                <div class="rounded shadow-sm container p-1 col-5 col-sm-4 col-md-4 col-xl-1 btn-warning">Home</div>
+        <div class="row justify-content-center">
+            <a href="main.html" class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-primary">Home</a>
+            <div class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-danger" id="deletePost">
+                Delete Post</div>
+        </div>
+
+        <div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3"
+            id="bigPost">
+            <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" id="postAuthor"></p>
+            <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm bg-white"
+                id="postContent"></p>
+            <a href="" id="link">
+                <p id='postUrl'></p>
             </a>
-            <div class="p-1 btn-danger col-5 col-sm-4 col-md-4 col-xl-1 rounded shadow-sm container"
-            id="deletePost">Delete Post</div>
+            <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border"id="createdAt"></p>
         </div>
 
-        <div class="container col-11 bg-light">
-
-            <div class="container" id="bigPost">
-                <h2 id="postTitle"></h2>
-                <p class="container border rounded col-8 col-md-6 col-xl-3 " id="postAuthor"></p>
-                <p class="col-11 container bg-white p-3 shadow-sm rounded" id="postContent"></p>
-                <a href="" class="col-11 col-md-8 col-xl-4" id="link">
-                    <p class="" id="postUrl"></p>
-                </a>
-            </div>
-            <div id="createComment" class="container col-10 col-sm-9 col-md-8 col-xl-6 bg-light">
-                <form id="createCommentForm" class="form-group">
-                    <textarea id="commentText" placeholder="Leave a comment"
-                        class=" form-control row-2 col-11"></textarea>
-                    <div class="inputs">
-                        <input id="submitComment" type="submit"
-                            class="submit btn-warning col-8 col-sm-6 col-md-4 col-xl-2 rounded shadow-sm container"
-                            value="Comment">
-                    </div>
-                </form>
-            </div>
-
-            <div id="comments" class="border-top border-dark"> Comments</div>
+        <div id="createComment"
+            class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3">
+            <form id="createCommentForm" class="form-group">
+                <textarea id="commentText" placeholder="Leave a comment" class=" form-control row-2 col-11"></textarea>
+                <div class="inputs">
+                    <input id="submitComment" type="submit"
+                        class="submit btn-warning col-8 col-sm-6 col-md-4 col-xl-2 rounded shadow-sm container"
+                        value="Comment">
+                </div>
+            </form>
         </div>
+
+        <div id="comments" class=""> Comments</div>
 
     </main>
 
-
+    <script src="node_modules/moment/moment.js"></script>
     <script src="JS/global.js"></script>
     <script src="JS/post.js"></script>
 

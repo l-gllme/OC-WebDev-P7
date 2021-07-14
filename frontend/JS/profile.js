@@ -15,7 +15,7 @@ if(params.has('userId')) {
            let username =  document.getElementById('username')
            username.innerHTML = user.username
            let mail =  document.getElementById('mail')
-           mail.innerHTML = user.email
+           mail.innerHTML = user.maskedEmail
         } else {
             alert('Error ' + response.status + 'Please Retry')
         }
@@ -25,6 +25,17 @@ if(params.has('userId')) {
     alert('Error Unkown user')
             window.location = 'main.html'
 }
+
+document.getElementById('edit').addEventListener('click', async(e) => {
+    e.preventDefault()
+    let editZone = document.getElementById('updateProfile')
+    editZone.style.display = 'block'
+})
+document.getElementById('cancelUpdate').addEventListener('click', async(e) => {
+    e.preventDefault()
+    let editZone = document.getElementById('updateProfile')
+    editZone.style.display = 'none'
+})
 //delete profile
 document.getElementById('delete').addEventListener('click', async(e) => {
     e.preventDefault()

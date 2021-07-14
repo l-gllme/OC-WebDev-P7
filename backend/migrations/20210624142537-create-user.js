@@ -12,6 +12,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      maskedEmail: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       username: {
         allowNull: false,
         type: Sequelize.STRING

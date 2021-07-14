@@ -16,8 +16,30 @@ document.getElementById('signup-form').addEventListener('submit', async(e) => {
             body: JSON.stringify(data)
         })
         if(response.status == 201) {
+
             alert('Registration successfully completed')
-            window.location.reload()
+            // Auto login
+            let data = JSON.stringify({
+                email: this.signup_email.value,
+                password: this.signup_password.value
+            })
+            const response = await fetch('http://localhost:3000/api/users/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: data
+            })
+            let apiData = await response.json()
+            if(response.status == 200) {
+                localStorage.setItem('token', apiData.token)
+                localStorage.setItem('userId', apiData.user)
+                localStorage.setItem('isAdmin', apiData.isAdmin)
+                localStorage.setItem('username', apiData.username)
+                window.location = 'main.html'
+            } else {
+                alert('Error ' + response.status + ' Please retry')
+            }
         } else {
             response.json().then((data) => {alert(data.error)})
             
@@ -28,7 +50,7 @@ document.getElementById('signup-form').addEventListener('submit', async(e) => {
 
 })
 
-//Log in the application
+//Login
 document.getElementById('signin-form').addEventListener('submit', async(e) => {
     e.preventDefault()
     let data = JSON.stringify({

@@ -6,6 +6,7 @@ let paramValue = params.get('id')
 
 let userId = localStorage.getItem('userId')
 let isAdmin = localStorage.getItem('isAdmin')
+console.log(isAdmin)
 
 //get one post 
 const getPostData = async () => {
@@ -18,6 +19,8 @@ const getPostData = async () => {
     const post = await response.json()
     if (response.status == 200) {
 
+        let time = moment(new Date(post.createdAt)).startOf('min').fromNow();
+
         let author = document.getElementById('postAuthor')
         author.innerHTML = 'Post by: ' + post.postAuthor
         let content = document.getElementById('postContent')
@@ -25,12 +28,16 @@ const getPostData = async () => {
         let link = document.getElementById('link')
         link.href = post.url
         let url = document.getElementById('postUrl')
-        url.innerHTML = post.url
-        url.classList = 'col-11 col-md-8 col-xl-4 rounded btn-transparent border container'
-        if (isAdmin || userId == post.userId) {
+        let createdAt = document.getElementById('createdAt')
+        createdAt.innerHTML= time
+        if (isAdmin == 1 || isAdmin == true || userId == post.userId) {
             let deleteBtn = document.getElementById('deletePost')
             deleteBtn.style.display = 'block'
             localStorage.setItem('postUserId', post.userId)
+        }
+        if (post.url != "") {
+            url.innerHTML = post.url
+            url.classList = 'col-6 col-sm-6 col-md-4 col-xl-3 rounded border bg-white border-primary'
         }
     } else {
         alert('Error ' + response.status + 'Please Retry')
