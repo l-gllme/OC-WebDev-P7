@@ -6,7 +6,6 @@ let paramValue = params.get('id')
 
 let userId = localStorage.getItem('userId')
 let isAdmin = localStorage.getItem('isAdmin')
-console.log(isAdmin)
 
 //get one post 
 const getPostData = async () => {
@@ -29,15 +28,15 @@ const getPostData = async () => {
         link.href = post.url
         let url = document.getElementById('postUrl')
         let createdAt = document.getElementById('createdAt')
-        createdAt.innerHTML= time
-        if (isAdmin == 1 || isAdmin == true || userId == post.userId) {
+        createdAt.innerHTML = time
+        if (userId == post.userId) {
             let deleteBtn = document.getElementById('deletePost')
             deleteBtn.style.display = 'block'
             localStorage.setItem('postUserId', post.userId)
         }
         if (post.url != "") {
             url.innerHTML = post.url
-            url.classList = 'col-6 col-sm-6 col-md-4 col-xl-3 rounded border bg-white border-primary'
+            url.classList = 'col-9 col-sm-9 col-md-7 col-xl-6 rounded border bg-white border-primary'
         }
     } else {
         alert('Error ' + response.status + 'Please Retry')
@@ -73,27 +72,34 @@ document.getElementById('deletePost').addEventListener('click', async (e) => {
 document.getElementById('createCommentForm').addEventListener('submit', async (e) => {
     e.preventDefault()
 
-    let data = JSON.stringify({
-        userId: localStorage.getItem('userId'),
-        content: document.getElementById('commentText').value,
-        postId: paramValue
-    })
-
-    const response = await fetch('http://localhost:3000/api/posts/' + paramValue + '/comments', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: data
-    }, true)
-
-    if (response.status == 201) {
-        window.location.reload();
+    if (document.getElementById('commentText').value == "") {
+        alert('Comment Empty')
     } else {
-        alert('Error ' + response.status + '. Please retry')
+        let data = JSON.stringify({
+            userId: localStorage.getItem('userId'),
+            content: document.getElementById('commentText').value,
+            postId: paramValue,
+            commentAuthor: localStorage.getItem('username')
+        })
+
+        const response = await fetch('http://localhost:3000/api/posts/' + paramValue + '/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: data
+        }, true)
+
+        if (response.status == 201) {
+            window.location.reload();
+        } else {
+            alert('Error ' + response.status + '. Please retry')
+        }
     }
 })
+
+
 
 const getAllComments = async () => {
     const response = await fetch('http://localhost:3000/api/posts/' + paramValue + '/comments', {
@@ -117,72 +123,30 @@ getAllComments();
 
 function displayComments(comment) {
 
-    const getUserData = async () => {
-        const response = await fetch('http://localhost:3000/api/users/' + comment.userId, {
-            headers: {
-                'Authorization': token
-            }
-        })
-        const user = await response.json()
-        if (response.status == 201) {
-            let commentAuthor = user.username
-            localStorage.setItem('commentAuthor', commentAuthor)
+    let time = moment(new Date(comment.createdAt)).startOf('min').fromNow();
 
-        } else {
-            alert('Error ' + response.status + 'Please Retry')
-        }
-    }
-
-    getUserData();
-    localStorage.setItem('commentAuthorId',comment.userId)
-    commentAuthor = localStorage.getItem('commentAuthor')
-
-    if (isAdmin || userId == comment.userId) {
+    if (userId == comment.userId) {
 
         let target = document.getElementById('comments');
         target.innerHTML +=
 
-        `<div class="container  col-10 col-sm-10 col-md-10 col-xl-10 bg-light ">
-                <p class="content container col-11 col-sm-11 col-md-11 col-xl-5 bg-white" id="commentAuthor">Comment
-                by: ${commentAuthor}</p>
-                <p class="content container col-11 col-sm-11 col-md-11 col-xl-11 bg-white">${comment.content}</p>
-                <a href="post.html?id=${paramValue}&commentId=${comment.id}"><div class="btn btn-danger col-6 col-md-3 col-xl-2 deleteComment">Delete Comment</div></>
+            `<div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-3 border border-dark mt-3">
+                <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" id="commentAuthor">Comment
+                by: ${comment.commentAuthor}</p>
+                <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm bg-white">${comment.content}</p>
+                <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border">${time}</p>
+                <a  href="redirect.html?id=${paramValue}&commentId=${comment.id}" class="deleteComment col-6 col-sm-5 col-md-3 col-xl-2 p-2 m-1 rounded 
+                shadow-sm btn-danger deleteComment">Delete</>
             </div>`
-    }else{
-        `<div class="container  col-10 col-sm-10 col-md-10 col-xl-10 bg-light ">
-            <p class="content container col-11 col-sm-11 col-md-11 col-xl-5 bg-white" id="commentAuthor">Comment
-            by: ${commentAuthor}</p>
-                <p class="content container col-11 col-sm-11 col-md-11 col-xl-11 bg-white">${comment.content}</p>
+    } else {
+        let target = document.getElementById('comments');
+        target.innerHTML +=
+            `<div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3">
+            <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" id="commentAuthor">Comment
+            by: ${comment.commentAuthor}</p>
+                <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm bg-white">${comment.content}</p>
+                <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border">${time}</p>
             </div>`
+
     }
-
 }
-/*let dell = document.getElementsByClassName('deleteComment')
-for ( var i = 0 ; i < dell.length; i++){
-    dell[i].addEventListener('click', async (e) => {
-        e.preventDefault()
-    
-        let cParamValue = params.get('commentId')
-    
-        let data = JSON.stringify({
-            userId: userId,
-            isAdmin: isAdmin,
-            commentAuthorId : localStorage.getItem('commentAuthorId')
-        })
-        const response = await fetch('http://localhost:3000/api/posts/' + ParamValue +'/comments/'+ cParamValue, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            },
-            body: data
-        })
-        if (response.status == 200) {
-            alert('Post successfully deleted')
-            location.reload
-        } else {
-            alert('Error ' + response.status + 'Please Retry')
-        }
-    })
-}*/
-

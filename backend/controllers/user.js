@@ -1,22 +1,22 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 const cryptoJs = require('crypto-js')
 
-const models = require('../models');
+const models = require('../models')
 
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const PASSWORD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
 
 function emailMask(email) {
-  var maskedEmail = email.replace(/([^@])/g, "*").split('');
-  var previous	= "";
+  var maskedEmail = email.replace(/([^@])/g, "*").split('')
+  var previous	= ""
   for(i=0;i<maskedEmail.length;i++){
     if (i<=0 || previous == "@"){
-      maskedEmail[i] = email[i];
+      maskedEmail[i] = email[i]
     }
-    previous = email[i];
+    previous = email[i]
   }
-  return maskedEmail.join('');
+  return maskedEmail.join('')
 }
 
 
@@ -24,23 +24,23 @@ module.exports = {
 
   signup: function (req, res) {
 
-    let email = req.body.email;
-    let username = req.body.username;
-    let password = req.body.password;
+    let email = req.body.email
+    let username = req.body.username
+    let password = req.body.password
 
      if (email == null || username == null || password == null) {
-       return res.status(400).json({ error: 'missing parameters' });
+       return res.status(400).json({ error: 'missing parameters' })
      }
      if (!EMAIL_REGEX.test(email)) {
-       return res.status(400).json({ error: 'email is not valid' });
+       return res.status(400).json({ error: 'email is not valid' })
      }
  
      if (!PASSWORD_REGEX.test(password)) {
-       return res.status(400).json({ error: 'Password invalid' });
+       return res.status(400).json({ error: 'Password invalid' })
      }
     models.User.findOne({ where: { email: req.body.email } }).then(result => {
       if (result) {
-        res.status(409).json({ 'error': 'email already exist' });
+        res.status(409).json({ 'error': 'email already exist' })
       } else {
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(req.body.password, salt, function (error, hash) {

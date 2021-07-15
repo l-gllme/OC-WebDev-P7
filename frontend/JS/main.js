@@ -82,7 +82,9 @@ function displayPosts(post) {
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" >${post.postAuthor} said:</p>
                 <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm
                 bg-white">${post.content}</p>
-                <a href="${post.url}" target="_blank" ><p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border bg-white border-primary">Open the link</p></a>
+                <a href="${post.url}" target="_blank" class="col-11">
+                    <p class="rounded border bg-white border-primary">${post.url}</p>
+                </a>
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border">${time}</p>
             </div>
         </a>`
