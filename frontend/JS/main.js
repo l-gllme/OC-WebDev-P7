@@ -29,7 +29,7 @@ document.getElementById('createPostForm').addEventListener('submit', async (e) =
     }, true)
 
     if (response.status == 201) {
-        window.location.reload();
+        window.location.reload()
     } else {
         alert('Erreur ' + response.status + '. Veuillez réessayer')
     }

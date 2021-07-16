@@ -2,10 +2,12 @@ const token = 'Bearer ' + localStorage.getItem('token')
 
 const params = new URLSearchParams(document.location.search)
 
+
 let paramValue = params.get('id')
 
 let userId = localStorage.getItem('userId')
 let isAdmin = localStorage.getItem('isAdmin')
+
 
 //get one post 
 const getPostData = async () => {
@@ -29,14 +31,14 @@ const getPostData = async () => {
         let url = document.getElementById('postUrl')
         let createdAt = document.getElementById('createdAt')
         createdAt.innerHTML = time
-        if (userId == post.userId) {
+        if (isAdmin == 'true' || userId == post.userId) {
             let deleteBtn = document.getElementById('deletePost')
             deleteBtn.style.display = 'block'
             localStorage.setItem('postUserId', post.userId)
         }
         if (post.url != "") {
             url.innerHTML = post.url
-            url.classList = 'col-9 col-sm-9 col-md-7 col-xl-6 rounded border bg-white border-primary'
+            url.classList = 'col-6 col-sm-6 col-md-4 col-xl-3 rounded border bg-white border-primary overflow'
         }
     } else {
         alert('Error ' + response.status + 'Please Retry')
@@ -125,7 +127,7 @@ function displayComments(comment) {
 
     let time = moment(new Date(comment.createdAt)).startOf('min').fromNow();
 
-    if (userId == comment.userId) {
+    if (isAdmin == 'true'|| userId == comment.userId) {
 
         let target = document.getElementById('comments');
         target.innerHTML +=
