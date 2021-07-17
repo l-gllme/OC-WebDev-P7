@@ -18,15 +18,15 @@
     <main>
 
         <div class="row justify-content-center">
-            <a href="main.html" class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-primary">Home</a>
-            <div class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-danger" id="deletePost">
-                Delete Post</div>
+            <a href="main.html" class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-danger btn">Home</a>
+            <a href="post.html" class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-primary btn-bleu" id="deletePost">
+                Delete Post</a>
         </div>
 
-        <div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3"
+        <div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 blue-border mt-3"
             id="bigPost">
             <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" id="postAuthor"></p>
-            <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm bg-white"
+            <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded blue-border shadow-sm bg-white"
                 id="postContent"></p>
             <a href="" id="link">
                 <p id='postUrl'></p>
@@ -35,12 +35,12 @@
         </div>
 
         <div id="createComment"
-            class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3">
+            class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 red-border mt-3">
             <form id="createCommentForm" class="form-group">
                 <textarea id="commentText" placeholder="Leave a comment" class=" form-control row-2 col-11"></textarea>
                 <div class="inputs">
                     <input id="submitComment" type="submit"
-                        class="submit btn-warning col-5 col-sm-6 col-md-4 col-xl-2 rounded shadow-sm container"
+                        class="submit btn-danger btn col-5 col-sm-6 col-md-4 col-xl-2 rounded shadow-sm container"
                         value="Comment">
                 </div>
             </form>

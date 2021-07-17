@@ -1,10 +1,12 @@
 const token = 'Bearer ' + localStorage.getItem('token')
 
 document.getElementById('disconect').addEventListener('click', function (e) {
+    e.preventDefault()
     localStorage.clear()
     window.location = 'index.html'
 })
 document.getElementById('profile').addEventListener('click', function (e) {
+    e.preventDefault()
     const userId = localStorage.getItem('userId')
     window.location = 'profile.html?userId=' + userId
 })
@@ -66,9 +68,9 @@ function displayPosts(post) {
         let time = moment(new Date(post.createdAt)).startOf('min').fromNow();
         target.innerHTML +=
             `<a href="post.html?id=${+post.id}">
-            <div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3 ">
+            <div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm bg-red p-2 blue-border mt-3 ">
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" >${post.postAuthor} said:</p>
-                <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 border shadow-sm
+                <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 blue-border rounded shadow-sm
                 bg-white">${post.content}</p>
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border">${time}</p>
                 </div>
@@ -78,12 +80,12 @@ function displayPosts(post) {
         let time = moment(new Date(post.createdAt)).startOf('min').fromNow();
         target.innerHTML +=
             `<a href="post.html?id=${+post.id}">
-            <div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3 ">
+            <div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 bg-red blue-border mt-3 ">
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" >${post.postAuthor} said:</p>
-                <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm
+                <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded blue-border shadow-sm
                 bg-white">${post.content}</p>
                 <a href="${post.url}" target="_blank" class="col-11">
-                    <p class="rounded border bg-white border-primary">${post.url}</p>
+                    <p class="rounded border bg-white">${post.url}</p>
                 </a>
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border">${time}</p>
             </div>

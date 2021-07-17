@@ -38,10 +38,10 @@ const getPostData = async () => {
         }
         if (post.url != "") {
             url.innerHTML = post.url
-            url.classList = 'col-6 col-sm-6 col-md-4 col-xl-3 rounded border bg-white border-primary overflow'
+            url.classList = 'col-6 col-sm-6 col-md-4 col-xl-3 rounded  bg-white blue-border overflow'
         }
     } else {
-        alert('Error ' + response.status + 'Please Retry')
+        response.json().then((data) => {alert(data.error)})
     }
 }
 getPostData()
@@ -67,7 +67,7 @@ document.getElementById('deletePost').addEventListener('click', async (e) => {
         alert('Post successfully deleted')
         window.location = 'main.html'
     } else {
-        alert('Error ' + response.status + 'Please Retry')
+        response.json().then((data) => {alert(data.error)})
     }
 })
 
@@ -132,18 +132,18 @@ function displayComments(comment) {
         let target = document.getElementById('comments');
         target.innerHTML +=
 
-            `<div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-3 border border-dark mt-3">
+            `<div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-3 blue-border mt-3">
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" id="commentAuthor">Comment
                 by: ${comment.commentAuthor}</p>
                 <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm bg-white">${comment.content}</p>
                 <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border">${time}</p>
                 <a  href="redirect.html?id=${paramValue}&commentId=${comment.id}" class="deleteComment col-6 col-sm-5 col-md-3 col-xl-2 p-2 m-1 rounded 
-                shadow-sm btn-danger deleteComment">Delete</>
+                shadow-sm btn-primary btn-bleu deleteComment">Delete</>
             </div>`
     } else {
         let target = document.getElementById('comments');
         target.innerHTML +=
-            `<div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 border border-dark mt-3">
+            `<div class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light rounded shadow-sm p-2 blue-border mt-3">
             <p class="col-6 col-sm-6 col-md-4 col-xl-3 rounded border" id="commentAuthor">Comment
             by: ${comment.commentAuthor}</p>
                 <p class="container col-11 col-sm-11 col-md-11 col-xl-11 p-2 rounded border shadow-sm bg-white">${comment.content}</p>

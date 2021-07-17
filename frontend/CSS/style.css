@@ -2,6 +2,52 @@ body{
     text-align: center;
     overflow: scroll;
 }
+html{
+    --rouge: #ffd7d7;
+    --fonce: #fd2d01;
+    --bleu: #091f43;
+}
+
+.btn{
+    background-color: var(--rouge);
+    border-color: var(--rouge);
+    color: black;
+}
+.btn-danger:hover {
+    color: #fff;
+    background-color: var(--fonce);
+    border-color: var(--fonce);
+}
+.btn-check:focus+.btn-danger, .btn-danger:focus {
+    color: #fff;
+    background-color: var(--fonce);
+    border-color: var(--fonce);
+    box-shadow: 0 0 0 0.25rem rgb(225 83 97 / 50%);
+}
+.btn-check:active+.btn-danger, .btn-check:checked
++.btn-danger, .btn-danger.active, .btn-danger:active, .show>.btn-danger.dropdown-toggle {
+    color: #fff;
+    background-color: var(--fonce);
+    border-color: var(--fonce);
+}
+.btn-bleu{
+    background-color: var(--bleu);
+    border-color: var(--bleu);
+    color: #fff;
+}
+.red-border{
+    border: 1px solid var(--fonce);
+}
+.bg-blue{
+    background-color: var(--bleu);
+}
+.bg-red{
+    background-color: var(--rouge);
+}
+.blue-border{
+    border: 1px solid var(--bleu);
+}
+
 header{
     height: 10vh;
     margin: auto;

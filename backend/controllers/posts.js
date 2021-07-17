@@ -51,6 +51,6 @@ module.exports = {
       }
         models.Post.destroy({ where: { id: id } })
             .then(result => {res.status(200).json({message: "Post deleted successfully"})})
-            .catch(error => {res.status(500).json({message: "Somenthing went wrong", error : 'error' })})
+            .catch(error => {res.status(500).json({message: "Somenthing went wrong", error : 'not deleted' })})
     },
 }

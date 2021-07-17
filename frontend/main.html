@@ -16,22 +16,22 @@
     </header>
 
     <nav class="row justify-content-center">
-        <div class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn-primary" id="profile">Profile</div>
-        <div class="col-5 col-sm-4 col-md-2 col-xl-1  p-1 m-1 rounded shadow-sm btn-primary" id="disconect">Disconect
-        </div>
+        <a href="main.html" class="col-5 col-sm-4 col-md-2 col-xl-1 p-1 m-1 rounded shadow-sm btn btn-danger" id="profile">Profile</a>
+        <a href="main.html" class="col-5 col-sm-4 col-md-2 col-xl-1  p-1 m-1 rounded shadow-sm btn-bleu btn-primary" id="disconect">Disconect
+        </a>
 
     </nav>
 
     <main>
         <div id="createPost"
-            class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light border border-warning rounded p-2 shadow-sm mt-3">
+            class="container col-11 col-sm-10 col-md-8 col-xl-6 bg-light red-border rounded p-2 shadow-sm mt-3">
             <form id="createPostForm" class="container">
                 <textarea id="postText" placeholder="Whats's happening?"
                     class="form-control row-2 conatiner col-11"></textarea>
                 <input class="col-6 col-sm-5 col-md-3 col-xl-2 p-1 m-1 rounded shadow-sm" id="createLink" type="url"
                     placeholder="Link (Optional)">
                 <input id="submitPost" type="submit"
-                    class="col-6 col-sm-5 col-md-3 col-xl-2 p-1 m-1 rounded shadow-sm btn-warning" value="Post">
+                    class="col-6 col-sm-5 col-md-3 col-xl-2 p-1 m-1 rounded shadow-sm btn-danger btn" value="Post">
             </form>
         </div>
 
