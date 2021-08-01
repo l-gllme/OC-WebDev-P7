@@ -11,7 +11,7 @@ Node Js requis
 - Ouvrez le fichier backend/config/config.json et configurez la base de données dévellopement avec vos identifiants
 
 - Dans votre terminal allez dans le dossier backend et tapez la commade > npm install
-- Puis tapez la commande node_modules/.bin/sequelize db:migrate
+- Puis tapez la commande npx sequelize-cli db:migrate
 
 - Enfin lancez le server avec node server ou nodemon server
 
