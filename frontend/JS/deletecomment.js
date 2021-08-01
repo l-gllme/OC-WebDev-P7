@@ -28,7 +28,7 @@ if (paramValue == undefined || cParamValue == undefined) {
         if (response.status == 200) {
             sessionStorage.setItem('commentAuthorId', comment.userId)
         } else {
-            alert('Error ' + response.status + 'Please Retry')
+            alert('Error ' + response.status )
         }
     }
     getCommentData()
@@ -54,6 +54,7 @@ const deleteComment = async () => {
         sessionStorage.clear
         window.location = 'post.html?id='+ paramValue
     } else {
+        window.location.reload();
         alert('Error ' + response.status + 'Please Retry')
     }
 }

@@ -34,7 +34,7 @@ module.exports = {
         });
     },
     deletePost: function (req, res) {
-        const id = req.params.id
+        const id = req.body.id
         const userId = req.body.userId
         const postUserId = req.body.postUserId
       if (!userId || !id) {
@@ -49,8 +49,9 @@ module.exports = {
         res.status(401).json({message: "not allowed"})
         return;
       }
-        models.Post.destroy({ where: { id: id } })
+        models.Comment.destroy({where: {postId: id} })
+        models.Post.destroy({ where: { id: req.body.id } })
             .then(result => {res.status(200).json({message: "Post deleted successfully"})})
-            .catch(error => {res.status(500).json({message: "Somenthing went wrong", error : 'not deleted' })})
+            .catch(error => {res.status(500).json({message: "Somenthing went wrong", error : 'Not Deleted' })})
     },
 }

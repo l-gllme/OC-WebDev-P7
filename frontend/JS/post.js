@@ -50,7 +50,14 @@ getPostData()
 
 document.getElementById('deletePost').addEventListener('click', async (e) => {
     e.preventDefault()
+
+    if (isAdmin == 'true') {
+        isAdmin = 1
+    }else{
+        isAdmin = 0
+    }
     let data = JSON.stringify({
+        id: paramValue,
         userId: userId,
         isAdmin: isAdmin,
         postUserId: localStorage.getItem('postUserId')
